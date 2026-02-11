@@ -77,7 +77,7 @@ async def on_message(message):
             await message.channel.send("Jeeeej wygrałem 👑")
         else:
             await message.channel.send("O nie, wygrałeś! Gratulacje 👑")
-    elif "emotka" in content:
+    elif "!emotka" in content:
         await message.channel.send("Podam ci jedną z moich 200 emotek")
         emoij = random.choice(emotki)
         await message.channel.send(emoij)
