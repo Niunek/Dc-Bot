@@ -47,6 +47,7 @@ async def on_message(message):
     print(f"używkownik {message.author} ma teraz {lista[user_id]} punktów!")
     await bot.process_commands(message)
 
+
 @bot.command()
 async def lvl(ctx):
     user_id = str(ctx.author.id)

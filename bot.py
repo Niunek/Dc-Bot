@@ -33,6 +33,5 @@ async def on_message(message):
     elif "źle" in content:
         await message.channel.send('O nie 😥')
         await message.author.send('Jeśli źle się czujesz, zadbaj o siebie i odpocznij ')
-
     
 client.run(TOKEN)
