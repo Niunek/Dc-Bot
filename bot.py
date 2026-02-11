@@ -1,6 +1,5 @@
 import discord
 import os
-import random
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -33,23 +32,7 @@ async def on_message(message):
 
     elif "źle" in content:
         await message.channel.send('O nie 😥')
-        await message.author.send(
-            'Jeśli źle się czujesz, zadbaj o siebie i odpocznij ❤️')
-        
-    elif content.startswith("chce stworzyc hasło"):
-        try:
-            number = int(content.split()[-1])
-            
-            znaki = "+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
-            haslo = ""
+        await message.author.send('Jeśli źle się czujesz, zadbaj o siebie i odpocznij ')
 
-            for i in range(number):
-                haslo += random.choice(znaki)
-
-            await message.channel.send(f"Twoje hasło: {haslo}")
-
-        except:
-            await message.channel.send("Podaj długość hasła np. `chce stworzyc haslo 12`")
-
+    
 client.run(TOKEN)
-
