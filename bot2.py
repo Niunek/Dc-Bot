@@ -3,6 +3,8 @@ from discord.ext import commands
 from dotenv import load_dotenv 
 import os 
 import json
+from easy_pil import Editor, Canvas, Font, load_image
+import io
 
 load_dotenv()
 TOKEN = os.getenv("TOKEN")
@@ -34,6 +36,7 @@ async def on_ready():
 async def hej(ctx):
     await ctx.send(f'Cześć, jestem bot{bot.user}!')
 
+
 @bot.event
 async def on_message(message):
     if message.author.bot:
@@ -51,7 +54,21 @@ async def on_message(message):
 @bot.command()
 async def lvl(ctx):
     user_id = str(ctx.author.id)
-    await ctx.send(f'Czesc, masz poziom{lista[user_id]}!')
+    xp_usera =lista[user_id]
+    name_usera = ctx.author.nick
+    avatar_img = load_image(ctx.author.display_avatar.url)
+    avatar = Editor(avatar_img).resize((150,150)).circle_image()
+    tlo = Editor("buckground.png")
+    tlo.paste(avatar, (200, 500))
+
+    profil_czcionki_1 = Font.poppins(size = 50, variant = "regular")
+    profil_czcionki_2 = Font.poppins(size = 40, variant = "light")
+    tekst_poziomu = f"lvl: {xp_usera}"
+    tlo.text((210, 660), str(name_usera),font = profil_czcionki_1, color="white")
+    tlo.text((210, 720), str(tekst_poziomu),font = profil_czcionki_2, color="red")
+
+    plik = discord.File(fp=tlo.image_bytes,filename="poziom.png")
+    await ctx.send(file=plik)
 
 @bot.command()
 async def heh(ctx, count_heh = 5):

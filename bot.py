@@ -36,6 +36,7 @@ emotki = [
 ]
 
 
+
 intents = discord.Intents.default()
 intents.message_content = True
 
@@ -47,8 +48,10 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.author == client.user:
-        return
+#     if message.author == client.user:
+#         return
+    global spamming 
+    spamming = False 
 
     content = message.content.lower()
     print(f'Wiadomość od {message.author}: {message.content}')
@@ -81,4 +84,12 @@ async def on_message(message):
         await message.channel.send("Podam ci jedną z moich 200 emotek")
         emoij = random.choice(emotki)
         await message.channel.send(emoij)
+    
+    if "start spam" in content:
+        spamming = True
+    elif "stop spam" in content:
+        spamming = False
+    while spamming:
+        await message.channel.send("spam")
+
 client.run(TOKEN)
