@@ -77,7 +77,7 @@ async def on_message(message):
         wynik = random.choice(["Orzeł", "Reszka"])
         await message.channel.send(f"Wynik rzutu monetą: {wynik}")
         if wynik == "Reszka":
-            await message.channel.send("Jeeeej wygrałem 👑")
+            await message.channel.send("Haha wygrałem 🤣")
         else:
             await message.channel.send("O nie, wygrałeś! Gratulacje 👑")
     elif "!emotka" in content:
